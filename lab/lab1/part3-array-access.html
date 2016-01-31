@@ -26,9 +26,12 @@
 
     ## Task 1: Data Storage
 
-    Let's consider a marker for a single restaurant point location. We could store information about that marker as an array ([element1, element2, element3...]). Your point location array should contain the following three elements in this order: 1. lat, 2. lng, 3. label.
+    Let's consider a marker for a single restaurant point location. \
+    We could store information about that marker as an array ([element1, element2, element3...]).\
+    Your point location array should contain the following three elements in this order: 1. lat, 2. lng, 3. label.
 
-    Create an array of arrays (an array that contains multiple arrays) to represent every restaurant in your restaurant data. Save this as variable "restaurantData".
+    Create an array of arrays (an array that contains multiple arrays) to represent every restaurant in your restaurant data.\
+    Save this as variable "restaurantData".
 
     ## Task 2: Process Data
 
@@ -36,11 +39,13 @@
 
     ## Task 3: Add Two Additional Markers
 
-    Add two additional restaurants to your data. You should only need to modify "restaurantData" to do this. Confirm that these new markers are added to your application.
+    Add two additional restaurants to your data. You should only need to modify "restaurantData" to do this./
+     Confirm that these new markers are added to your application.
 
     ## Task 4: Add Popups to Markers
 
-    Add popups to your markers. The popup should contain the label for your restaurant. Refer to the Leaflet documentation for instructions on adding a popup: http://leafletjs.com/reference.html#popup
+    Add popups to your markers. The popup should contain the label for your restaurant.\
+    Refer to the Leaflet documentation for instructions on adding a popup: http://leafletjs.com/reference.html#popup
 
     ===================== */
 
@@ -57,15 +62,22 @@
       ext: 'png'
     }).addTo(map);
 
-    /* =====================
 
-    Start code
+    var ramenDive = [39.955671, -75.154469, "Terakawa Ramen"];
+    var cheeseDive = [39.953903, -75.144642, "Wedge And Fig"];
+    var oysterDive = [39.934335, -75.147386, "Snockey's"];
 
-    ===================== */
+    var restaurantData = [ramenDive, cheeseDive, oysterDive];
 
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
+    var drinkDrive = [39.949738, -75.143442, "The Continental"];
+    var coffeeDive = [39.950809, -75.144753, "Old City Coffee"];
+    restaurantData.push(coffeeDive,drinkDrive);
+
+    for (i=0; i<restaurantData.length;i++){
+    L.marker([restaurantData[i][0],restaurantData[i][1]]).bindPopup(restaurantData[i][2]).openPopup().addTo(map);
+    }
+
+
 
     /* =====================
 

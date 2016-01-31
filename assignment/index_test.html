@@ -64,11 +64,32 @@
 
 
 
-      var jsonToCsv = function(json) { console.log(json);};
-
-      
+      var jsonToCsv = function(json) {};
 
       var addMarkers = function(map) {};
+
+      for(i=0; i<healthCenters.length; i++){
+        var anObject = healthCenters[i];
+        var healthCenter = [];
+        for (key in anObject) {
+          healthCenter.push(anObject[key]);
+          }
+         console.log(healthCenter);
+      var mapData = [healthCenter[0], healthCenter[1], healthCenter[3]];
+
+  L.marker([mapData[1],mapData[0]]).bindPopup(mapData[2]).openPopup().addTo(map).dragging.enable();
+
+
+
+
+            }
+    //console.log(mapData.length)
+    /*if(healthCenter[3].search("dental")>0) {
+      L.marker([mapData[1],mapData[0]]).bindPopup(mapData[2]).openPopup().addTo(map).dragging.enable();
+    }
+    else { */
+
+
 
       /* =====================
 
@@ -78,6 +99,9 @@
 
 
       jsonToCsv(healthCenters);
+
+
+
       addMarkers(map);
     </script>
     <!--Your code ends here-->
