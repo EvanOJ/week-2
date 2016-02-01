@@ -52,7 +52,42 @@
       // Store sum you compute in this variable:
       var yourSum = 0;
 
-      var simpleFunction = function(i){
+      var checkString = function(value) {
+        if (typeof value === 'string') {
+          return true;
+        }
+        else {
+          return false;
+        }
+      }
+
+      var checkNumber = function(value) {
+        if (typeof value === 'number') {
+          return true;
+        }
+        else {
+          return false;
+        }
+      }
+
+      var sumString = function(value) {
+        yourSum +=theArray[i].length;
+      }
+      var sumNumber = function(value) {
+        yourSum += value;
+      }
+
+      for (var i = 0; i<theArray.length;i++){
+        if (checkString(theArray[i])) {
+          sumString(theArray[i]);
+        } else if (checkNumber(theArray[i])) {
+          sumNumber(theArray[i]);
+        } else {
+          console.log("Not sure how to proceed with value: ", theArray[i])
+        }
+      }
+
+      /*var simpleFunction = function(i){
         if (typeof theArray[i] === 'string') {         // String case
           yourSum = exampleSum + theArray[i].length
         } else if (typeof arrayValue[i] === 'number') {  // Number case

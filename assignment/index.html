@@ -64,11 +64,40 @@
 
 
 
-      var jsonToCsv = function(json) { console.log(json);};
-
-      
+      var jsonToCsv = function(json) {};
 
       var addMarkers = function(map) {};
+
+      for(i=0; i<healthCenters.length; i++){
+        var anObject = healthCenters[i];
+        var healthCenter = [];
+        for (key in anObject) {
+          healthCenter.push(anObject[key]);
+          }
+        var mapData = [healthCenter[0], healthCenter[1], healthCenter[3], healthCenter[5]];
+         var myIcon = L.icon({
+            iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Map_marker_font_awesome.svg/2000px-Map_marker_font_awesome.svg.png',
+            iconSize: [38, 38],
+            iconAnchor: [22, 94],
+            popupAnchor: [-3, -76],
+
+ });
+         if(healthCenter[5]>=19140 && 19149>=healthCenter[5]){
+           if(healthCenter[3].indexOf('Dental')!==-1){
+           L.marker([mapData[1],mapData[0]],{icon:myIcon}).bindPopup(mapData[2]).openPopup().addTo(map).dragging.enable();
+         }
+         else{L.marker([mapData[1],mapData[0]]).bindPopup(mapData[2]).openPopup().addTo(map).dragging.enable();
+         }
+         } else {}
+         console.log(healthCenter);
+       };
+    //console.log(mapData.length)
+    /*if(healthCenter[3].search("dental")>0) {
+      L.marker([mapData[1],mapData[0]]).bindPopup(mapData[2]).openPopup().addTo(map).dragging.enable();
+    }
+    else { */
+
+
 
       /* =====================
 
@@ -78,6 +107,9 @@
 
 
       jsonToCsv(healthCenters);
+
+
+
       addMarkers(map);
     </script>
     <!--Your code ends here-->

@@ -7,11 +7,9 @@
   <body>
 
     <!--left panel-->
-      <div style="position:fixed;left:0px;width:400px">
-      </div>
-      <!--map-->
-      <div id="map" style="position:fixed;right:0px;left:400px;height:100%;">
-      </div>
+    <div style="position: absolute; left: 0px; width: 400px; top: 0; bottom: 0;"></div>
+    <!--map-->
+    <div id="map" style="position: absolute; right: 0; left: 400px; top: 0; bottom: 0;"></div>
 
     <!--javascript imports-->
     <script src="leaflet.js"></script>
@@ -56,42 +54,46 @@
     ===================== */
 
     var data = bikeArrayDirty;
-
-
-//clean data
-var cleanData = function(array, indexA, indexB){
-  var temp = [];
-  //keep all observations with exactly four elements within each observation
-  for (i = 0 ; i < array.length ; i++){
-    if (array[i].length === 4){
-      temp.push(array[i]);
-    }
-  }
-  console.log(temp);
-  //convert some strings into numbers
-  for (i = 0 ; i < temp.length ; i++){
-    temp[i][0] = parseFloat(temp[i][0]);
-    temp[i][1] = parseFloat(temp[i][1]);
-    temp[i][3] = parseFloat(temp[i][3]);
-  }
-  console.log(temp);
-  //swap first two elements
-  for (i = 0 ; i < temp.length ; i++){
-    var x = temp[i][indexA];
-    temp[i][indexA] = temp[i][indexB];
-    temp[i][indexB] = x;
-  }
-  console.log(temp);
-  return temp;
-}
-
-data = cleanData(data, 0, 1);
-console.log(data)
+    //console.log(data)
     /* =====================
 
     Start code to filter data
 
     ===================== */
+
+    //clean data start
+
+    var cleanData = function(array, indexA, indexB){
+      var temp = [];
+      //keep all observations with exactly four elements within each observation
+      for (i = 0 ; i < array.length ; i++){
+        if (array[i].length === 4){
+          temp.push(array[i]);
+        }
+      }
+      //console.log(temp);
+      //convert some strings into numbers
+      for (i = 0 ; i < temp.length ; i++){
+        temp[i][0] = parseFloat(temp[i][0]);
+        temp[i][1] = parseFloat(temp[i][1]);
+        temp[i][3] = parseFloat(temp[i][3]);
+      }
+      //console.log(temp);
+      //swap first two elements
+      for (i = 0 ; i < temp.length ; i++){
+        var x = temp[i][indexA];
+        temp[i][indexA] = temp[i][indexB];
+        temp[i][indexB] = x;
+      }
+      //console.log(temp);
+      return temp;
+    }
+
+    data = cleanData(data, 0, 1);
+    //console.log(data)
+
+    //clean data end
+
     var dataFiltered = [];
 
     for(var i=0; i<data.length; i++){
@@ -99,7 +101,7 @@ console.log(data)
         dataFiltered.push(data[i]);
       }
     }
-
+    console.log(dataFiltered)
     /* =====================
 
     End code to filter data
@@ -125,7 +127,7 @@ console.log(data)
 
     ===================== */
     for (i=0; i<dataFiltered.length;i++){
-    L.marker([dataFiltered[i][1],dataFiltered[i][0]]).bindPopup(dataFiltered[i][2]).openPopup().addTo(map);
+    L.marker([dataFiltered[i][0],dataFiltered[i][1]]).bindPopup(dataFiltered[i][2]).openPopup().addTo(map);
 }
     /* =====================
 
